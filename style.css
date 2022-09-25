@@ -1,0 +1,49 @@
+* {
+    font-family: "Advent Pro";
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+}
+
+.container {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 8rem;
+}
+
+.grid {
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-gap: 1px;
+    background-color: white;
+    border: 1px solid skyblue; 
+}
+
+.pixel {
+    border: 1px solid skyblue;
+    background-color: steelblue;
+    text-align: center;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+footer {
+    height: 50px;
+    text-align: center;
+}
