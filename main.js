@@ -3,7 +3,8 @@ const container = document.querySelector('.container');
 const navbar = document.querySelector('.navbar');
 
 const color = document.querySelector('.color');
-let currentColor = color.addEventListener("input", () => color.value);
+color.addEventListener("input", () => currentColor = color.value);
+
 
 const colorMode = document.querySelector('.color-mode');
 const eraser = document.querySelector('.eraser');
@@ -31,7 +32,9 @@ createGrid(16, 16);
 
 console.log(color.value);
 
+
 function colorCell(event, cellIndex, color) {
     document.querySelector(cellIndex);
+    event.target.style.backgroundColor = 'black';
     event.target.style.backgroundColor = currentColor;
 }
