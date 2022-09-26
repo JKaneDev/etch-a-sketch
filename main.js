@@ -25,6 +25,7 @@ let currentRange = 16;
 let rows = currentRange;
 let columns = currentRange;
 createGrid(rows, columns);
+
 range.addEventListener('input', (e) => {
     currentRange = parseInt(range.value);
     createGrid(rows, columns);
@@ -52,13 +53,11 @@ function createGrid(rows, columns) {
     for (cellIndex = 0; cellIndex < (rows * columns); cellIndex++) {
         cell = document.createElement('div');
         cell.className = cellIndex;
-        cell.style.backgroundColor = 'steelblue';
+        cell.style.backgroundColor = 'white';
         grid.appendChild(cell)
         cell.addEventListener('mouseover', colorCell);
     }
 } 
-
-
 
 function colorCell(event, cellIndex, color) {
     document.querySelector(cellIndex);
