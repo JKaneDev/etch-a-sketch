@@ -14,13 +14,15 @@
     <header><h1>Etch-a-Sketch</h1></header>
     <div class="navbar">
         <input type="color" class="color"></input>
-        <button class="color-mode">Color Mode</button>
+        <button class="color-mode">Rainbow Mode</button>
         <button class="eraser">Eraser</button>
         <button class="clear">Clear</button>
         <!-- grid size toggle -->
     </div>
     <div class="grid-container">
     <div class="grid"></div>
+    <input type="range" min="16" max="64" class="range" value="16">
+    <p><span class="range-output"></span></p>
 </div>
 </div>
     <footer>Copyright &copy; 2022 jameskane <i class="fa fa-github"></fa-github></footer>
