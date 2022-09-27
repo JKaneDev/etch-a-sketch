@@ -3,6 +3,11 @@ const container = document.querySelector('.container');
 const navbar = document.querySelector('.navbar');
 
 const color = document.querySelector('.color');
+
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false);
+
 let currentColor;
 color.addEventListener("input", () => {
     currentColor = color.value;
@@ -10,6 +15,7 @@ color.addEventListener("input", () => {
 
 const colorMode = document.querySelector('.color-mode');
 const eraser = document.querySelector('.eraser');
+// eraser.addEventListener
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearGrid);
@@ -58,10 +64,12 @@ function createGrid(rows, columns) {
         cell.style.backgroundColor = 'white';
         grid.appendChild(cell)
         cell.addEventListener('mouseover', colorCell);
+        cell.addEventListener('mousedown', colorCell);
     }
 } 
 
 function colorCell(event, cellIndex, color) {
+    if (event.type === 'mouseover' && !mouseDown) return
     document.querySelector(cellIndex);
     event.target.style.backgroundColor = 'black';
     event.target.style.backgroundColor = currentColor;
@@ -72,5 +80,5 @@ function clearGrid(event, gridCells) {
     console.log(elements);
     elements.forEach(gridCell => {
         gridCell.style.backgroundColor = 'white';
-    })
+    });
 } 
