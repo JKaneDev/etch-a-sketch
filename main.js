@@ -10,14 +10,15 @@ color.addEventListener("input", () => {
 
 const colorMode = document.querySelector('.color-mode');
 const eraser = document.querySelector('.eraser');
+
 const clear = document.querySelector('.clear');
+clear.addEventListener('click', clearGrid);
 
 const gridContainer = document.querySelector('.grid-container');
 const grid = document.querySelector('.grid');
 
 const range = document.querySelector('.range');
 let rangeValue = range.value;
-console.log(rangeValue);
 
 
 // Slider to select grid size
@@ -52,7 +53,8 @@ function createGrid(rows, columns) {
     
     for (cellIndex = 0; cellIndex < (rows * columns); cellIndex++) {
         cell = document.createElement('div');
-        cell.className = cellIndex;
+        cell.setAttribute("id", cellIndex);
+        cell.className = 'gridCells';
         cell.style.backgroundColor = 'white';
         grid.appendChild(cell)
         cell.addEventListener('mouseover', colorCell);
@@ -64,3 +66,11 @@ function colorCell(event, cellIndex, color) {
     event.target.style.backgroundColor = 'black';
     event.target.style.backgroundColor = currentColor;
 }
+
+function clearGrid(event, gridCells) {
+    let elements = Array.from(document.getElementsByClassName('gridCells'));
+    console.log(elements);
+    elements.forEach(gridCell => {
+        gridCell.style.backgroundColor = 'white';
+    })
+} 

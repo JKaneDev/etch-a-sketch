@@ -39,11 +39,12 @@ input[type="color"] {
     height: 35px;
     padding: 0;
     width: 80px;
-    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 20px;
   }
 
 .color::-webkit-color-swatch {
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
   
