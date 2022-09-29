@@ -32,6 +32,19 @@ html, body {
     padding: 0 8rem;
 }
 
+.navbar button {
+    background-color: lightgrey;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 10px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 20px;
+}
+
+.active {
+    background-color: black;
+}
+
 input[type="color"] {
     background: none;
     cursor: pointer;
@@ -55,7 +68,10 @@ input[type="color"] {
     display: grid;
     background-color: white; 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor:
 }
+
+
 
 .pixel {
     border: 1px solid skyblue;
@@ -80,6 +96,7 @@ input[type="color"] {
     background: #aaa;
     outline: none;
     margin-top: 2em;
+    cursor: pointer;
 }
 
 .range::-webkit-slider-thumb {

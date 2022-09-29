@@ -1,21 +1,33 @@
 const container = document.querySelector('.container');
 
-const navbar = document.querySelector('.navbar');
-
-const color = document.querySelector('.color');
-
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false);
 
+const navbar = document.querySelector('.navbar');
+
 let currentColor;
+const color = document.querySelector('.color');
 color.addEventListener("input", () => {
     currentColor = color.value;
 });
 
-const colorMode = document.querySelector('.color-mode');
+const psychedelic = document.querySelector('.psychedelic');
+psychedelic.addEventListener('click', () => {
+    currentColor = randomHex();
+    
+});
+
+
+let navButtons = document.querySelectorAll('.buttons');
+let buttons = Array.from(navButtons);
+selectActiveMode(this, buttons);
+
+
 const eraser = document.querySelector('.eraser');
-// eraser.addEventListener
+eraser.addEventListener('click', () => {
+    currentColor = 'white';
+});
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearGrid);
@@ -25,19 +37,17 @@ const grid = document.querySelector('.grid');
 
 const range = document.querySelector('.range');
 let rangeValue = range.value;
+// Clear grid and create new one upon size adjustment
+range.addEventListener('input', (e) => {
+    currentRange = parseInt(range.value);
+    clearGrid();
+    createGrid(rows, columns);
+});
 
-
-// Slider to select grid size
 let currentRange = 16;
 let rows = currentRange;
 let columns = currentRange;
 createGrid(rows, columns);
-
-range.addEventListener('input', (e) => {
-    currentRange = parseInt(range.value);
-    createGrid(rows, columns);
-    console.log(currentRange);
-});
 
 const rangeOutput = document.querySelector('.range-output');
 rangeOutput.textContent = range.value + ' x ' + range.value;
@@ -73,12 +83,57 @@ function colorCell(event, cellIndex, color) {
     document.querySelector(cellIndex);
     event.target.style.backgroundColor = 'black';
     event.target.style.backgroundColor = currentColor;
+    if (event.target.id !== currentColor) {
+        currentColor = randomHex();
+    }
 }
 
 function clearGrid(event, gridCells) {
     let elements = Array.from(document.getElementsByClassName('gridCells'));
-    console.log(elements);
     elements.forEach(gridCell => {
         gridCell.style.backgroundColor = 'white';
     });
 } 
+
+function removeActive(target) {
+    buttons.forEach(button => {
+        if (button == target) { button.classList.add('active'); }
+        else { button.classList.remove('active'); }
+    });
+}
+
+function selectActiveMode(event, buttons) {
+    buttons.forEach.call(buttons, function(b) {
+        b.addEventListener('click', function(e) { 
+            buttons.forEach.call(buttons, function(b) {
+                b.classList.remove('active');
+                b.style.backgroundColor = 'lightgrey';
+                b.style.color = 'black';
+            })
+        b.classList.toggle('active');
+        b.style.backgroundColor = 'black';
+        b.style.color = 'lightgrey';
+    });
+});
+}
+
+function randomInt(max) {
+    return Math.floor(Math.random()*(max + 1));
+}
+
+function randomRGB() {
+    let r = randomInt(255);
+    let g = randomInt(255);
+    let b = randomInt(255);
+    return [r, g, b];
+}
+
+function randomHex() {
+    let [r, g, b] = randomRGB();
+
+    let hr = r.toString(16).padStart(2, '0');
+    let hg = g.toString(16).padStart(2, '0');
+    let hb = b.toString(16).padStart(2, '0');
+
+    return '#' + hr + hg + hb;
+}
